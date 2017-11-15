@@ -1,0 +1,17 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "26.0.0"
+
+    defaultConfig {
+        applicationId "p8.demo.intelligent"
+    }
+
+    buildTypes {i
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
