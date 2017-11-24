@@ -13,6 +13,8 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import javax.security.auth.login.LoginException;
+
 public class IntelligentView extends SurfaceView implements SurfaceHolder.Callback, Runnable {
 
 	// Declaration des images
@@ -25,7 +27,9 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     private Bitmap 		down;
     private Bitmap 		left;
     private Bitmap 		right; 
-    private Bitmap 		win; 
+    private Bitmap 		win;
+    private Bitmap 		blockm;
+    private Bitmap 		videm;
     
 	// Declaration des objets Ressources et Context permettant d'accéder aux ressources de notre application et de les charger
     private Resources 	mRes;    
@@ -33,15 +37,25 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
 
     // tableau modelisant la carte du jeu
     int[][] carte;
+    int[][] carte_m;
     
     // ancres pour pouvoir centrer la carte du jeu
     int        carteTopAnchor;                   // coordonnées en Y du point d'ancrage de notre carte
     int        carteLeftAnchor;                  // coordonnées en X du point d'ancrage de notre carte
 
+    // ancres pour pouvoir centrer la carte du jeu
+    int        carte_mTopAnchor;                   // coordonnées en Y du point d'ancrage de la miniature
+    int        carte_mLeftAnchor;                  // coordonnées en X du point d'ancrage de la miniature
+
     // taille de la carte
-    static final int    carteWidth    = 5;
+   /* static final int    carteWidth    = 5;
     static final int    carteHeight   = 5;
-    static final int    carteTileSize = 50;
+    static final int    carteTileSize = 50;*/
+
+    // taille de la carte minateur
+    static final int    carteWidth_m    = 5;
+    static final int    carteHeight_m   = 5;
+    static final int    carteTileSize_m = 15;
 
     // constante modelisant les differentes types de cases
     static final int    CST_block     = 0;
@@ -49,43 +63,24 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     static final int    CST_perso     = 2;
     static final int    CST_zone      = 3;
     static final int    CST_vide      = 4;
+    static final int    CST_blockm    = 0;
+    static final int    CST_videm     = 4;
 
     // tableau de reference du terrain
-    int [][] ref    = {
-        {CST_vide, CST_vide,CST_block, CST_vide, CST_block},
-        {CST_vide, CST_block,CST_vide, CST_block, CST_vide},
-        {CST_vide, CST_vide,CST_vide, CST_block, CST_vide},
-        {CST_vide, CST_block,CST_block, CST_vide, CST_vide},
-        {CST_vide, CST_vide,CST_vide, CST_vide, CST_vide},
-    };
-
-    // position de reference des diamants
-    int [][] refdiamants   = {
-        {2, 3},
-        {2, 4},
-        {3, 3},
-        {2, 2}
-    };
+    int [][] ref    = Helper.getRandomGrill();
+    int [][] ref_m1    = Helper.getGrillRef();
 
     // position de reference du joueur
     int refxPlayer = 4;
-    int refyPlayer = 1;    
-
-    // position courante des diamants
-    int [][] diamants   = {
-            {2, 3},
-            {2, 4},
-            {3, 3},
-            {2, 2}
-        };
+    int refyPlayer = 1;
 
     // position courante du joueur
         int xPlayer = 4;
         int yPlayer = 1;
-        
+
         /* compteur et max pour animer les zones d'arriv�e des diamants */
         int currentStepZone = 0;
-        int maxStepZone     = 4;  
+        int maxStepZone     = 4;
 
         // thread utiliser pour animer les zones de depot des diamants
         private     boolean in      = true;
@@ -124,32 +119,40 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     	left 		= BitmapFactory.decodeResource(mRes, R.drawable.left);
     	right 		= BitmapFactory.decodeResource(mRes, R.drawable.right);
     	win 		= BitmapFactory.decodeResource(mRes, R.drawable.win);
+        blockm 		= BitmapFactory.decodeResource(mRes, R.drawable.blockm);
+        videm 		= BitmapFactory.decodeResource(mRes, R.drawable.videm);
     	
     	// initialisation des parmametres du jeu
     	initparameters();
-
     	// creation du thread
         cv_thread   = new Thread(this);
         // prise de focus pour gestion des touches
         setFocusable(true); 
-        	
-    	
-    }    
 
-    // chargement du niveau a partir du tableau de reference du niveau
-    private void loadlevel() {
-    	for (int i=0; i< carteHeight; i++) {
-            for (int j=0; j< carteWidth; j++) {
+    }
+
+    // chargement de la miniateur 1 _______________________________________________
+    private void loadlevelm1() {
+        for (int i=0; i< Helper.CARTEHEIGHT; i++) {
+            for (int j=0; j< Helper.CARTEWIDTH; j++) {
+                carte_m[j][i]= ref_m1[j][i];
+            }
+        }
+    }
+
+
+     private void loadlevel() {
+    	for (int i=0; i< Helper.CARTEHEIGHT; i++) {
+            for (int j=0; j< Helper.CARTEWIDTH; j++) {
                 carte[j][i]= ref[j][i];
             }
-        }	
-    }    
-    
+        }
+    }
+
     // initialisation du jeu
     public void initparameters() {
     	paint = new Paint();
     	paint.setColor(0xff0000);
-    	
     	paint.setDither(true);
     	paint.setColor(0xFFFFFF00);
     	paint.setStyle(Paint.Style.STROKE);
@@ -157,16 +160,21 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     	paint.setStrokeCap(Paint.Cap.ROUND);
     	paint.setStrokeWidth(2);
     	paint.setTextAlign(Paint.Align.LEFT);
-        carte           = new int[carteHeight][carteWidth];
-        loadlevel();
-        carteTopAnchor  = (getHeight()- carteHeight*carteTileSize)/2;
-        carteLeftAnchor = (getWidth()- carteWidth*carteTileSize)/2;
+
+        carte_m           = new int[Helper.CARTEHEIGHT][Helper.CARTEWIDTH];
+       // loadlevelm1();
+        carte_m=ref_m1;
+        carteTopAnchor  = (getHeight()- Helper.CARTEHEIGHT*Helper.CARTETILESIZE_MIN);
+        carteLeftAnchor = (getWidth()- Helper.CARTEWIDTH*Helper.CARTETILESIZE_MIN);
+
+        carte           = new int[Helper.CARTEHEIGHT][Helper.CARTEWIDTH];
+        //loadlevel();
+        carte=ref;
+        carteTopAnchor  = (getHeight()- Helper.CARTEHEIGHT*Helper.CARTETILESIZE)/2;
+        carteLeftAnchor = (getWidth()- Helper.CARTEWIDTH*Helper.CARTETILESIZE)/2;
         xPlayer = refxPlayer;
         yPlayer = refyPlayer;
-        for (int i=0; i< 4; i++) {
-            diamants[i][1] = refdiamants[i][1];
-            diamants[i][0] = refdiamants[i][0];
-        }
+
         if ((cv_thread!=null) && (!cv_thread.isAlive())) {        	
         	cv_thread.start();
         	Log.e("-FCT-", "cv_thread.start()");
@@ -183,22 +191,38 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
 
     // dessin du gagne si gagne
     private void paintwin(Canvas canvas) {
-    	canvas.drawBitmap(win, carteLeftAnchor+ 3*carteTileSize, carteTopAnchor+ 4*carteTileSize, null);
+    	canvas.drawBitmap(win, carteLeftAnchor+ 3*Helper.CARTETILESIZE, carteTopAnchor+ 4*Helper.CARTETILESIZE, null);
     }    
     
     // dessin de la carte du jeu
     private void paintcarte(Canvas canvas) {
-    	for (int i=0; i< carteHeight; i++) {
-            for (int j=0; j< carteWidth; j++) {
+    	for (int i=0; i< Helper.CARTEHEIGHT; i++) {
+            for (int j=0; j< Helper.CARTEWIDTH; j++) {
                 switch (carte[i][j]) {
                     case CST_block:
-                    	canvas.drawBitmap(block, carteLeftAnchor+ j*carteTileSize, carteTopAnchor+ i*carteTileSize, null);
+                    	canvas.drawBitmap(block, carteLeftAnchor+ j*Helper.CARTETILESIZE, carteTopAnchor+ i*Helper.CARTETILESIZE, null);
                     	break;                    
                     case CST_zone:
-                    	canvas.drawBitmap(zone[currentStepZone],carteLeftAnchor+ j*carteTileSize, carteTopAnchor+ i*carteTileSize, null);
+                    	canvas.drawBitmap(zone[currentStepZone],carteLeftAnchor+ j*Helper.CARTETILESIZE, carteTopAnchor+ i*Helper.CARTETILESIZE, null);
                         break;
                     case CST_vide:
-                    	canvas.drawBitmap(vide,carteLeftAnchor+ j*carteTileSize, carteTopAnchor+ i*carteTileSize, null);
+                    	canvas.drawBitmap(vide,carteLeftAnchor+ j*Helper.CARTETILESIZE, carteTopAnchor+ i*Helper.CARTETILESIZE, null);
+                        break;
+                }
+            }
+        }
+    }
+
+    // dessin de la carte minateur  du jeu
+    private void paintcarte_m(Canvas canvas) {
+        for (int i=0; i< Helper.CARTEHEIGHT; i++) {
+            for (int j=0; j< Helper.CARTEWIDTH; j++) {
+                switch (carte_m[i][j]) {
+                    case CST_blockm:
+                        canvas.drawBitmap(blockm, carte_mLeftAnchor+ j*Helper.CARTETILESIZE_MIN, carte_mTopAnchor+ i*Helper.CARTETILESIZE_MIN, null);
+                        break;
+                    case CST_videm:
+                        canvas.drawBitmap(videm,carte_mLeftAnchor+ j*Helper.CARTETILESIZE_MIN, carte_mTopAnchor+ i*Helper.CARTETILESIZE_MIN, null);
                         break;
                 }
             }
@@ -207,23 +231,17 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     
     // dessin du curseur du joueur
     private void paintPlayer(Canvas canvas) {
-    	canvas.drawBitmap(perso,carteLeftAnchor+ xPlayer*carteTileSize, carteTopAnchor+ yPlayer*carteTileSize, null);
+    	canvas.drawBitmap(perso,carteLeftAnchor+ xPlayer*Helper.CARTETILESIZE, carteTopAnchor+ yPlayer*Helper.CARTETILESIZE, null);
     }
 
     // dessin des diamants
     private void paintdiamants(Canvas canvas) {
-        for (int i=0; i< 4; i++) {
-        	canvas.drawBitmap(diamant,carteLeftAnchor+ diamants[i][1]*carteTileSize, carteTopAnchor+ diamants[i][0]*carteTileSize, null);
-        }
+
     }
 
     // permet d'identifier si la partie est gagnee (tous les diamants à leur place)
     private boolean isWon() {
-        for (int i=0; i< 4; i++) {
-            if (!IsCell(diamants[i][1], diamants[i][0], CST_zone)) {
-                return false;
-            }
-        }
+
         return true;
     }
     
@@ -231,10 +249,12 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     private void nDraw(Canvas canvas) {
 		canvas.drawRGB(44,44,44);
     	if (isWon()) {
-        	paintcarte(canvas);
+            paintcarte(canvas);
+        	paintcarte_m(canvas);
         	paintwin(canvas);        	
         } else {
         	paintcarte(canvas);
+            paintcarte_m(canvas);
             paintPlayer(canvas);
             paintdiamants(canvas);
             paintarrow(canvas);
@@ -254,7 +274,8 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
 
     
     public void surfaceDestroyed(SurfaceHolder arg0) {
-    	Log.i("-> FCT <-", "surfaceDestroyed");    	        
+    	Log.i("-> FCT <-", "surfaceDestroyed");
+    	in=false;
     }    
 
     /**
@@ -283,10 +304,10 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     
     // verification que nous sommes dans le tableau
     private boolean IsOut(int x, int y) {
-        if ((x < 0) || (x > carteWidth- 1)) {
+        if ((x < 0) || (x > Helper.CARTEWIDTH- 1)) {
             return true;
         }
-        if ((y < 0) || (y > carteHeight- 1)) {
+        if ((y < 0) || (y > Helper.CARTEHEIGHT- 1)) {
             return true;
         }
         return false;
@@ -302,22 +323,13 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
 
     // controle si nous avons un diamant dans la case
     private boolean IsDiamant(int x, int y) {
-        for (int i=0; i< 4; i++) {
-            if ((diamants[i][1] == x) && (diamants[i][0] == y)) {
-                return true;
-            }
-        }
+
         return false;
     }
 
     // met à jour la position d'un diamant
     private void UpdateDiamant(int x, int y, int new_x, int new_y) {
-        for (int i=0; i< 4; i++) {
-            if ((diamants[i][1] == x) && (diamants[i][0] == y)) {
-                diamants[i][1] = new_x;
-                diamants[i][0] = new_y;
-            }
-        }
+
     }    
     // fonction permettant de recuperer les retours clavier
     @Override
@@ -372,7 +384,19 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     
     // fonction permettant de recuperer les evenements tactiles
     public boolean onTouchEvent (MotionEvent event) {
-    	Log.i("-> FCT <-", "onTouchEvent: "+ event.getX()); 
+       /* switch(event.getAction())
+        {
+            case(MotionEvent.ACTION_DOWN):
+
+                break;
+
+            case(MotionEvent.ACTION_UP):
+
+                break;
+        }
+
+    	Log.i("-> FCT <-", "onTouchEvent: "+ event.getX());
+
     	if (event.getY()<50) {
     		onKeyDown(KeyEvent.KEYCODE_DPAD_UP, null);
     	} else if (event.getY()>getHeight()-50) {
@@ -385,7 +409,37 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     		onKeyDown(KeyEvent.KEYCODE_DPAD_LEFT, null);
     	} else if (event.getX()>getWidth()-50) {
     		onKeyDown(KeyEvent.KEYCODE_DPAD_RIGHT, null);
-    	} 
+    	} */
+        getinfo(event);
     	return super.onTouchEvent(event);    	
+    }
+
+    public void getinfo(MotionEvent event )
+    {
+        Float leftclick=event.getX()-carteLeftAnchor;
+        Float topclick=event.getY()-carteTopAnchor;
+        if(leftclick>0 && topclick>0){
+            Float xx =  leftclick/Helper.CARTETILESIZE;
+            Float yy =topclick/Helper.CARTETILESIZE;
+            if(xx < Helper.CARTEWIDTH && yy < Helper.CARTEHEIGHT)
+                switch(event.getAction())
+                {
+                    case(MotionEvent.ACTION_DOWN):
+                        Log.i("www", "getinfo: bas "+down);
+
+                        break;
+
+                    case(MotionEvent.ACTION_UP):
+                        Log.i("www", "getinfo: haut "+up);
+                        break;
+                }
+            else
+                Log.i(""," vous avez cliqué a l'exterieur du carree");
+
+        }else{
+            Log.i(""," vous avez cliqué a l'exterieur du carree");
+        }
+
+
     }
 }
