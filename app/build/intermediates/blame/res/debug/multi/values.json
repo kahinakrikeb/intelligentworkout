@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+        "outputFile": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 107
                 },
                 "from": {
-                    "file": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\src\\main\\res\\values\\strings.xml",
+                    "file": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -30,7 +30,7 @@
                     "endOffset": 178
                 },
                 "from": {
-                    "file": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\src\\main\\res\\values\\strings.xml",
+                    "file": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,

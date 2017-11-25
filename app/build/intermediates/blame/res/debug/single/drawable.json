@@ -1,70 +1,78 @@
 [
     {
-        "merged": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\zone_04.png",
-        "source": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\src\\main\\res\\drawable\\zone_04.png"
+        "merged": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\icon.png",
+        "source": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\src\\main\\res\\drawable\\icon.png"
     },
     {
-        "merged": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\zone_01.png",
-        "source": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\src\\main\\res\\drawable\\zone_01.png"
+        "merged": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\win.png",
+        "source": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\src\\main\\res\\drawable\\win.png"
     },
     {
-        "merged": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\down.png",
-        "source": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\src\\main\\res\\drawable\\down.png"
+        "merged": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\perso.png",
+        "source": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\src\\main\\res\\drawable\\perso.png"
     },
     {
-        "merged": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\diamant1.png",
-        "source": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\src\\main\\res\\drawable\\diamant1.png"
+        "merged": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\right.png",
+        "source": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\src\\main\\res\\drawable\\right.png"
     },
     {
-        "merged": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\win.png",
-        "source": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\src\\main\\res\\drawable\\win.png"
+        "merged": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\blockr1.png",
+        "source": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\src\\main\\res\\drawable\\blockr1.png"
     },
     {
-        "merged": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\zone_03.png",
-        "source": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\src\\main\\res\\drawable\\zone_03.png"
+        "merged": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\vide.png",
+        "source": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\src\\main\\res\\drawable\\vide.png"
     },
     {
-        "merged": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\right.png",
-        "source": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\src\\main\\res\\drawable\\right.png"
+        "merged": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\left.png",
+        "source": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\src\\main\\res\\drawable\\left.png"
     },
     {
-        "merged": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\vide1.png",
-        "source": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\src\\main\\res\\drawable\\vide1.png"
+        "merged": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\zone_03.png",
+        "source": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\src\\main\\res\\drawable\\zone_03.png"
     },
     {
-        "merged": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\block.png",
-        "source": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\src\\main\\res\\drawable\\block.png"
+        "merged": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\vide1.png",
+        "source": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\src\\main\\res\\drawable\\vide1.png"
     },
     {
-        "merged": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\up.png",
-        "source": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\src\\main\\res\\drawable\\up.png"
+        "merged": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\zone_04.png",
+        "source": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\src\\main\\res\\drawable\\zone_04.png"
     },
     {
-        "merged": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\blockr1.png",
-        "source": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\src\\main\\res\\drawable\\blockr1.png"
+        "merged": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\videm.png",
+        "source": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\src\\main\\res\\drawable\\videm.png"
     },
     {
-        "merged": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\block1.png",
-        "source": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\src\\main\\res\\drawable\\block1.png"
+        "merged": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\zone_01.png",
+        "source": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\src\\main\\res\\drawable\\zone_01.png"
     },
     {
-        "merged": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\perso.png",
-        "source": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\src\\main\\res\\drawable\\perso.png"
+        "merged": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\up.png",
+        "source": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\src\\main\\res\\drawable\\up.png"
     },
     {
-        "merged": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\icon.png",
-        "source": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\src\\main\\res\\drawable\\icon.png"
+        "merged": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\diamant1.png",
+        "source": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\src\\main\\res\\drawable\\diamant1.png"
     },
     {
-        "merged": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\zone_02.png",
-        "source": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\src\\main\\res\\drawable\\zone_02.png"
+        "merged": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\blockm.png",
+        "source": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\src\\main\\res\\drawable\\blockm.png"
     },
     {
-        "merged": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\vide.png",
-        "source": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\src\\main\\res\\drawable\\vide.png"
+        "merged": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\zone_02.png",
+        "source": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\src\\main\\res\\drawable\\zone_02.png"
     },
     {
-        "merged": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\left.png",
-        "source": "D:\\Master1_S1\\Android\\Intelligent Workout\\IntelligentWorkout\\app\\src\\main\\res\\drawable\\left.png"
+        "merged": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\block.png",
+        "source": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\src\\main\\res\\drawable\\block.png"
+    },
+    {
+        "merged": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\down.png",
+        "source": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\src\\main\\res\\drawable\\down.png"
+    },
+    {
+        "merged": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\block1.png",
+        "source": "D:\\Master1_S1\\Android\\intelligentworkout\\app\\src\\main\\res\\drawable\\block1.png"
     }
 ]

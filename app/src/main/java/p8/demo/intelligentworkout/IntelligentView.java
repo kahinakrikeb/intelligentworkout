@@ -6,16 +6,20 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 
 import javax.security.auth.login.LoginException;
 
-public class IntelligentView extends SurfaceView implements SurfaceHolder.Callback, Runnable {
+public class IntelligentView extends SurfaceView implements SurfaceHolder.Callback, Runnable,GestureDetector.OnGestureListener {
 
 	// Declaration des images
     private Bitmap 		block;
@@ -53,10 +57,10 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     static final int    carteTileSize = 50;*/
 
     // taille de la carte minateur
-    static final int    carteWidth_m    = 5;
-    static final int    carteHeight_m   = 5;
+    //static final int    carteWidth_m    = 5;
+    //static final int    carteHeight_m   = 5;
     static final int    carteTileSize_m = 15;
-
+    GestureDetector detector;
     // constante modelisant les differentes types de cases
     static final int    CST_block     = 0;
     static final int    CST_diamant   = 1;
@@ -97,8 +101,10 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
      */
     public IntelligentView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        
-        
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
+            detector=new GestureDetector(this.getContext(),this);
+        }
         // permet d'ecouter les surfaceChanged, surfaceCreated, surfaceDestroyed        
     	holder = getHolder();
         holder.addCallback(this);    
@@ -235,14 +241,12 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     }
 
     // dessin des diamants
-    private void paintdiamants(Canvas canvas) {
 
-    }
 
     // permet d'identifier si la partie est gagnee (tous les diamants à leur place)
     private boolean isWon() {
 
-        return true;
+        return Helper.isSame(carte,carte_m);
     }
     
     // dessin du jeu (fond uni, en fonction du jeu gagne ou pas dessin du plateau et du joueur des diamants et des fleches)
@@ -256,7 +260,6 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
         	paintcarte(canvas);
             paintcarte_m(canvas);
             paintPlayer(canvas);
-            paintdiamants(canvas);
             paintarrow(canvas);
         }    	   	
         
@@ -264,17 +267,14 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     
     // callback sur le cycle de vie de la surfaceview
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-    	Log.i("-> FCT <-", "surfaceChanged "+ width +" - "+ height);
     	initparameters();
     }
 
     public void surfaceCreated(SurfaceHolder arg0) {
-    	Log.i("-> FCT <-", "surfaceCreated");    	        
     }
 
     
     public void surfaceDestroyed(SurfaceHolder arg0) {
-    	Log.i("-> FCT <-", "surfaceDestroyed");
     	in=false;
     }    
 
@@ -322,67 +322,53 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     }
 
     // controle si nous avons un diamant dans la case
-    private boolean IsDiamant(int x, int y) {
 
-        return false;
-    }
 
     // met à jour la position d'un diamant
-    private void UpdateDiamant(int x, int y, int new_x, int new_y) {
 
-    }    
     // fonction permettant de recuperer les retours clavier
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+    public boolean onKeyDown(int keyCode, KeyEvent event,int x,int y) {
 
     	Log.i("-> FCT <-", "onKeyUp: "+ keyCode); 
     	
         int xTmpPlayer	= xPlayer;
         int yTmpPlayer  = yPlayer;
         int xchange 	= 0;
-        int ychange 	= 0;    	
-
+        int ychange 	= 0;
         if (keyCode == KeyEvent.KEYCODE_0) {
         	initparameters();
         }
     	
         if (keyCode == KeyEvent.KEYCODE_DPAD_UP) {
-        	ychange = -1;
+        	xchange = -1;
         }
 
         if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
-        	ychange = 1;
+        	xchange = 1;
         }
 
         if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
-            xchange = -1;
+            ychange = -1;
         }
 
         if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
-            xchange = 1;        
+            ychange = 1;
         }
-	        xPlayer = xPlayer+ xchange;
-	        yPlayer = yPlayer+ ychange;
-	
-	        if (IsOut(xPlayer, yPlayer) || IsCell(xPlayer, yPlayer, CST_block)) {
-	            xPlayer = xTmpPlayer;
-	            yPlayer = yTmpPlayer;
-	        } else if (IsDiamant(xPlayer, yPlayer)) {
-	            int xTmpDiamant = xPlayer;
-	            int yTmpDiamant = yPlayer;
-	            xTmpDiamant = xTmpDiamant+ xchange;
-	            yTmpDiamant = yTmpDiamant+ ychange;
-	            if (IsOut(xTmpDiamant, yTmpDiamant) || IsCell(xTmpDiamant, yTmpDiamant, CST_block) || IsDiamant(xTmpDiamant, yTmpDiamant)) {
-	                xPlayer = xTmpPlayer;
-	                yPlayer = yTmpPlayer;
-	            } else {
-	                UpdateDiamant(xTmpDiamant- xchange, yTmpDiamant- ychange, xTmpDiamant, yTmpDiamant);
-	            }
+
+	        xPlayer = x+ xchange;
+	        yPlayer = y+ ychange;
+	        if (!IsOut(xPlayer, yPlayer)) {
+	           int aa= carte[x][y];
+                carte[x][y]= carte[xPlayer][yPlayer];
+                carte[xPlayer][yPlayer]=aa;
 	        }            
 	    return true;   
     }
-    
+
+
     // fonction permettant de recuperer les evenements tactiles
+    @Override
     public boolean onTouchEvent (MotionEvent event) {
        /* switch(event.getAction())
         {
@@ -410,36 +396,86 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     	} else if (event.getX()>getWidth()-50) {
     		onKeyDown(KeyEvent.KEYCODE_DPAD_RIGHT, null);
     	} */
-        getinfo(event);
-    	return super.onTouchEvent(event);    	
+        Log.i("TAG", "onTouchEvent: "+event.getAction());
+        //getinfo(event);
+    	return detector.onTouchEvent(event);
     }
 
-    public void getinfo(MotionEvent event )
+
+    public void getinfo(MotionEvent event,MotionEvent event1 )
     {
+        float x1=0, x2, y1=0, y2, dx, dy;
+        String direction;
         Float leftclick=event.getX()-carteLeftAnchor;
         Float topclick=event.getY()-carteTopAnchor;
+        Log.i("TTTAG", "getinfo: ");
         if(leftclick>0 && topclick>0){
             Float xx =  leftclick/Helper.CARTETILESIZE;
             Float yy =topclick/Helper.CARTETILESIZE;
-            if(xx < Helper.CARTEWIDTH && yy < Helper.CARTEHEIGHT)
-                switch(event.getAction())
-                {
-                    case(MotionEvent.ACTION_DOWN):
-                        Log.i("www", "getinfo: bas "+down);
 
-                        break;
+            if(xx < Helper.CARTEWIDTH && yy < Helper.CARTEHEIGHT){
+                        x1 = event.getX();
+                        y1 = event.getY();
+                        Log.i("www", "getinfo: bas " );
+                       // onKeyDown(KeyEvent.KEYCODE_DPAD_DOWN, null,yy.intValue(),xx.intValue());
+                        //Log.i("www", "getinfo: bas "+xx.intValue()+"ggg"+yy.intValue());
+                        x2 = event1.getX();
+                        y2 = event1.getY();
+                        dx = x2 - x1;
+                        dy = y2 - y1;
+                        Log.i("www", "getinfo: haut " );
+                        // Use dx and dy to determine the direction of the move
+                        if (Math.abs(dx) > Math.abs(dy)) {
+                            if (dx > 0)
+                                onKeyDown(KeyEvent.KEYCODE_DPAD_RIGHT, null, yy.intValue(), xx.intValue());
 
-                    case(MotionEvent.ACTION_UP):
-                        Log.i("www", "getinfo: haut "+up);
-                        break;
+                            else
+                                onKeyDown(KeyEvent.KEYCODE_DPAD_LEFT, null, yy.intValue(), xx.intValue());
+
+                        } else {
+                            if (dy > 0)
+                                onKeyDown(KeyEvent.KEYCODE_DPAD_DOWN, null, yy.intValue(), xx.intValue());
+
+                            else
+                                onKeyDown(KeyEvent.KEYCODE_DPAD_UP, null, yy.intValue(), xx.intValue());
+
+                        }
                 }
             else
                 Log.i(""," vous avez cliqué a l'exterieur du carree");
-
         }else{
             Log.i(""," vous avez cliqué a l'exterieur du carree");
         }
+    }
 
+    @Override
+    public boolean onDown(MotionEvent motionEvent) {
+        return true;
+    }
 
+    @Override
+    public void onShowPress(MotionEvent motionEvent) {
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent motionEvent) {
+
+    }
+
+    @Override
+    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
+        getinfo( motionEvent ,motionEvent1);
+        return true;
     }
 }
