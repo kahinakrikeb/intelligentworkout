@@ -341,28 +341,32 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
         }
     	
         if (keyCode == KeyEvent.KEYCODE_DPAD_UP) {
+           carte= Helper.depColTop(carte,y);
         	xchange = -1;
         }
 
         if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
+            carte= Helper.depColDown(carte,y);
         	xchange = 1;
         }
 
         if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
+            carte= Helper.depLineLeft(carte,x);
             ychange = -1;
         }
 
         if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
+            carte= Helper.depLineRight(carte,x);
             ychange = 1;
         }
 
-	        xPlayer = x+ xchange;
+	      /*  xPlayer = x+ xchange;
 	        yPlayer = y+ ychange;
 	        if (!IsOut(xPlayer, yPlayer)) {
 	           int aa= carte[x][y];
                 carte[x][y]= carte[xPlayer][yPlayer];
                 carte[xPlayer][yPlayer]=aa;
-	        }            
+	        }  */
 	    return true;   
     }
 

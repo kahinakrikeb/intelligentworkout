@@ -64,6 +64,69 @@ public class Helper {
         return ref;
     }
 
+    static  int[][] dupCarte(int[][] carte)
+    {
+        int [][] tmpcarte=new int[CARTEHEIGHT][CARTEWIDTH];
+        for(int i=0;i<CARTEHEIGHT;i++)
+        {
+            for (int j=0;j<CARTEWIDTH;j++)
+            {
+                tmpcarte[i][j]=carte[i][j];
+            }
+        }
+        return tmpcarte;
+    }
+    static  int[][] depColTop(int[][]carte,int colone)
+    {
+        int [][] tmpcarte=dupCarte(carte);
+        for (int i=0;i<CARTEHEIGHT;i++) {
+            if(i==0)
+                carte[CARTEHEIGHT-1][colone]=tmpcarte[i][colone];
+            else {
+                    carte[i-1][colone]=tmpcarte[i][colone];
+            }
+        }
+        return carte;
+    }
+    static  int[][] depColDown(int[][]carte,int colone)
+    {
+        int [][] tmpcarte=dupCarte(carte);
+        for (int i=0;i<CARTEHEIGHT;i++) {
+            if(i==0)
+                carte[i][colone]=tmpcarte[CARTEHEIGHT-1][colone];
+            else
+                carte[i][colone]=tmpcarte[i-1][colone];
+
+        }
+        return carte;
+    }
+ static  int[][] depLineLeft(int[][]carte,int line)
+    {
+        int [][] tmpcarte=dupCarte(carte);
+        for (int i=0;i<CARTEWIDTH;i++) {
+            if(i==0)
+                carte[line][CARTEWIDTH-1]=tmpcarte[line][i];
+            else {
+                carte[line][i-1]=tmpcarte[line][i];
+            }
+        }
+        return carte;
+    }
+    static  int[][] depLineRight(int[][]carte,int line)
+    {
+        
+        int [][] tmpcarte=dupCarte(carte);
+        for (int i=0;i<CARTEWIDTH;i++) {
+            if(i==0)
+                carte[line][i]=tmpcarte[line][CARTEWIDTH-1];
+            else
+                carte[line][i]=tmpcarte[line][i-1];
+
+        }
+        return carte;
+    }
+
+
     static Boolean isSame(int[][] grill,int[][]ref)
     {
         boolean same=true;
