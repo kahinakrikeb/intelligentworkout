@@ -18,23 +18,40 @@ public class Helper {
     // taille de la carte minateur
 
     static final int   CARTETILESIZE_MIN = 15;
-
     // constante modelisant les differentes types de cases
     static final int    CST_BLEU     = 4;
     static final int    CST_ROUGE  = 0;
+    static int [][][] ref    = {
+        {
+            {CST_BLEU, CST_BLEU,CST_ROUGE, CST_BLEU,CST_BLEU },
+            {CST_BLEU, CST_BLEU,CST_ROUGE, CST_BLEU, CST_BLEU},
+            {CST_ROUGE, CST_ROUGE,CST_ROUGE, CST_ROUGE, CST_ROUGE},
+            {CST_BLEU, CST_BLEU, CST_ROUGE, CST_BLEU, CST_BLEU},
+            {CST_BLEU, CST_BLEU, CST_ROUGE,CST_BLEU, CST_BLEU},
+        },
+        {
+            {CST_BLEU, CST_ROUGE,CST_ROUGE, CST_ROUGE,CST_BLEU },
+            {CST_BLEU, CST_BLEU,CST_ROUGE, CST_BLEU, CST_BLEU},
+            {CST_BLEU, CST_BLEU,CST_ROUGE, CST_BLEU, CST_BLEU},
+            {CST_BLEU, CST_BLEU, CST_ROUGE, CST_BLEU, CST_BLEU},
+            {CST_BLEU, CST_ROUGE, CST_ROUGE,CST_ROUGE, CST_BLEU},
+        },
+        {
+            {CST_BLEU, CST_BLEU,CST_ROUGE, CST_BLEU,CST_BLEU },
+            {CST_BLEU, CST_ROUGE,CST_BLEU, CST_ROUGE, CST_BLEU},
+            {CST_ROUGE, CST_BLEU,CST_ROUGE, CST_BLEU, CST_ROUGE},
+            {CST_BLEU, CST_ROUGE, CST_BLEU, CST_ROUGE, CST_BLEU},
+            {CST_BLEU, CST_BLEU, CST_ROUGE,CST_BLEU, CST_BLEU},
+        }
+    };
 
-    static int[][] getGrillRef()
+
+    static int[][] getGrillRef(int i)
     {
-        int [][] ref    = {
-                {CST_BLEU, CST_BLEU,CST_ROUGE, CST_BLEU,CST_BLEU },
-                {CST_BLEU, CST_BLEU,CST_ROUGE, CST_BLEU, CST_BLEU},
-                {CST_ROUGE, CST_ROUGE,CST_ROUGE, CST_ROUGE, CST_ROUGE},
-                {CST_BLEU, CST_BLEU, CST_ROUGE, CST_BLEU, CST_BLEU},
-                {CST_BLEU, CST_BLEU, CST_ROUGE,CST_BLEU, CST_BLEU},
-        };
-        return ref;
-    }
 
+        return Helper.ref[i];
+    }
+    // créer aleatoirement la grande grille
     static int[][] getRandomGrill()
     {
         int nbbleu=16,nbroug=9,couleur=0;
@@ -76,6 +93,7 @@ public class Helper {
         }
         return tmpcarte;
     }
+
     static  int[][] depColTop(int[][]carte,int colone)
     {
         int [][] tmpcarte=dupCarte(carte);

@@ -1,4 +1,4 @@
-#Sat Nov 25 23:16:23 GMT+01:00 2017
+#Mon Nov 27 17:50:45 GMT+01:00 2017
 base.0=D\:\\Master1_S1\\Android\\intelligentworkout\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_9e2ff8f23d90494e24dd53bd5654799855743786
 renamed.1=classes.dex
 renamed.0=classes2.dex

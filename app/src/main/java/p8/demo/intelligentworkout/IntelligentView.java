@@ -34,6 +34,7 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     private Bitmap 		win;
     private Bitmap 		blockm;
     private Bitmap 		videm;
+    private Integer     niveau=0;//
     
 	// Declaration des objets Ressources et Context permettant d'accéder aux ressources de notre application et de les charger
     private Resources 	mRes;    
@@ -59,7 +60,7 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     // taille de la carte minateur
     //static final int    carteWidth_m    = 5;
     //static final int    carteHeight_m   = 5;
-    static final int    carteTileSize_m = 15;
+    //static final int    carteTileSize_m = 15;
     GestureDetector detector;
     // constante modelisant les differentes types de cases
     static final int    CST_block     = 0;
@@ -71,8 +72,12 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     static final int    CST_videm     = 4;
 
     // tableau de reference du terrain
-    int [][] ref    = Helper.getRandomGrill();
-    int [][] ref_m1    = Helper.getGrillRef();
+    int [][] ref       = Helper.getRandomGrill();
+    int [][] ref1       = Helper.getRandomGrill();
+    int [][] ref2       = Helper.getRandomGrill();
+    int [][] ref_m1    = Helper.getGrillRef(0);
+    int [][] ref_m2    = Helper.getGrillRef(1);
+    int [][] ref_m3    = Helper.getGrillRef(2);
 
     // position de reference du joueur
     int refxPlayer = 4;
@@ -147,6 +152,32 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     }
 
 
+    // chargement de la miniateur 1 _______________________________________________
+    private void loadlevelm2() {
+        for (int i=0; i< Helper.CARTEHEIGHT; i++) {
+            for (int j=0; j< Helper.CARTEWIDTH; j++) {
+                carte_m[j][i]= ref_m2[j][i];
+            }
+        }
+    }
+
+
+    // chargement de la miniateur 1 _______________________________________________
+    private void loadlevelm3() {
+        for (int i=0; i< Helper.CARTEHEIGHT; i++) {
+            for (int j=0; j< Helper.CARTEWIDTH; j++) {
+                carte_m[j][i]= ref_m3[j][i];
+            }
+        }
+    }
+
+
+
+
+
+
+
+
      private void loadlevel() {
     	for (int i=0; i< Helper.CARTEHEIGHT; i++) {
             for (int j=0; j< Helper.CARTEWIDTH; j++) {
@@ -175,9 +206,10 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
 
         carte           = new int[Helper.CARTEHEIGHT][Helper.CARTEWIDTH];
         //loadlevel();
-        carte=ref;
+        carte           =  ref;
         carteTopAnchor  = (getHeight()- Helper.CARTEHEIGHT*Helper.CARTETILESIZE)/2;
         carteLeftAnchor = (getWidth()- Helper.CARTEWIDTH*Helper.CARTETILESIZE)/2;
+        carte_mLeftAnchor = (getWidth()- Helper.CARTEWIDTH*Helper.CARTETILESIZE_MIN)/2;
         xPlayer = refxPlayer;
         yPlayer = refyPlayer;
 
@@ -185,7 +217,91 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
         	cv_thread.start();
         	Log.e("-FCT-", "cv_thread.start()");
         }
-    }    
+    }
+    // initialisation du jeu niveau 2 ___________________________________________
+    public void initparameters1() {
+        paint = new Paint();
+        paint.setColor(0xff0000);
+        paint.setDither(true);
+        paint.setColor(0xFFFFFF00);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeWidth(2);
+        paint.setTextAlign(Paint.Align.LEFT);
+
+        carte_m         = new int[Helper.CARTEHEIGHT][Helper.CARTEWIDTH];
+        // loadlevelm1();
+        carte_m         =  ref_m2;
+        carteTopAnchor  = (getHeight()- Helper.CARTEHEIGHT*Helper.CARTETILESIZE_MIN);
+        carteLeftAnchor = (getWidth()- Helper.CARTEWIDTH*Helper.CARTETILESIZE_MIN);
+
+        carte           = new int[Helper.CARTEHEIGHT][Helper.CARTEWIDTH];
+        //loadlevel();
+
+        carte           =  ref1;  ///////////////////////////
+
+
+
+        carteTopAnchor  = (getHeight()- Helper.CARTEHEIGHT*Helper.CARTETILESIZE)/2;
+        carteLeftAnchor = (getWidth()- Helper.CARTEWIDTH*Helper.CARTETILESIZE)/2;
+        carte_mLeftAnchor = (getWidth()- Helper.CARTEWIDTH*Helper.CARTETILESIZE_MIN)/2;
+        //xPlayer = refxPlayer;
+        //yPlayer = refyPlayer;
+
+        if ((cv_thread!=null) && (!cv_thread.isAlive())) {
+            cv_thread.start();
+            Log.e("-FCT-", "cv_thread.start()");
+        }
+    }
+
+    //________________________________________________________________________________
+
+
+
+    // initialisation du jeu niveau 3 ___________________________________________
+    public void initparameters2() {
+        paint = new Paint();
+        paint.setColor(0xff0000);
+        paint.setDither(true);
+        paint.setColor(0xFFFFFF00);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeWidth(2);
+        paint.setTextAlign(Paint.Align.LEFT);
+
+        carte_m           = new int[Helper.CARTEHEIGHT][Helper.CARTEWIDTH];
+        // loadlevelm1();
+        carte_m=ref_m3;
+        carteTopAnchor  = (getHeight()- Helper.CARTEHEIGHT*Helper.CARTETILESIZE_MIN);
+        carteLeftAnchor = (getWidth()- Helper.CARTEWIDTH*Helper.CARTETILESIZE_MIN);
+
+        carte           = new int[Helper.CARTEHEIGHT][Helper.CARTEWIDTH];
+        //loadlevel();
+        carte           = ref2;
+        carteTopAnchor  = (getHeight()- Helper.CARTEHEIGHT*Helper.CARTETILESIZE)/2;
+        carteLeftAnchor = (getWidth()- Helper.CARTEWIDTH*Helper.CARTETILESIZE)/2;
+        carte_mLeftAnchor = (getWidth()- Helper.CARTEWIDTH*Helper.CARTETILESIZE_MIN)/2;
+        xPlayer = refxPlayer;
+        yPlayer = refyPlayer;
+
+        if ((cv_thread!=null) && (!cv_thread.isAlive())) {
+            cv_thread.start();
+            Log.e("-FCT-", "cv_thread.start()");
+        }
+    }
+
+    //________________________________________________________________________________
+
+
+
+
+
+
+
+
+
 
     // dessin des fleches
     private void paintarrow(Canvas canvas) {
@@ -205,13 +321,13 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     	for (int i=0; i< Helper.CARTEHEIGHT; i++) {
             for (int j=0; j< Helper.CARTEWIDTH; j++) {
                 switch (carte[i][j]) {
-                    case CST_block:
+                    case Helper.CST_ROUGE:
                     	canvas.drawBitmap(block, carteLeftAnchor+ j*Helper.CARTETILESIZE, carteTopAnchor+ i*Helper.CARTETILESIZE, null);
-                    	break;                    
+                    	break;
                     case CST_zone:
                     	canvas.drawBitmap(zone[currentStepZone],carteLeftAnchor+ j*Helper.CARTETILESIZE, carteTopAnchor+ i*Helper.CARTETILESIZE, null);
                         break;
-                    case CST_vide:
+                    case Helper.CST_BLEU:
                     	canvas.drawBitmap(vide,carteLeftAnchor+ j*Helper.CARTETILESIZE, carteTopAnchor+ i*Helper.CARTETILESIZE, null);
                         break;
                 }
@@ -224,10 +340,10 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
         for (int i=0; i< Helper.CARTEHEIGHT; i++) {
             for (int j=0; j< Helper.CARTEWIDTH; j++) {
                 switch (carte_m[i][j]) {
-                    case CST_blockm:
+                    case Helper.CST_ROUGE:
                         canvas.drawBitmap(blockm, carte_mLeftAnchor+ j*Helper.CARTETILESIZE_MIN, carte_mTopAnchor+ i*Helper.CARTETILESIZE_MIN, null);
                         break;
-                    case CST_videm:
+                    case Helper.CST_BLEU:
                         canvas.drawBitmap(videm,carte_mLeftAnchor+ j*Helper.CARTETILESIZE_MIN, carte_mTopAnchor+ i*Helper.CARTETILESIZE_MIN, null);
                         break;
                 }
@@ -337,7 +453,8 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
         int xchange 	= 0;
         int ychange 	= 0;
         if (keyCode == KeyEvent.KEYCODE_0) {
-        	initparameters();
+
+
         }
     	
         if (keyCode == KeyEvent.KEYCODE_DPAD_UP) {
@@ -406,49 +523,59 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     }
 
 
-    public void getinfo(MotionEvent event,MotionEvent event1 )
-    {
-        float x1=0, x2, y1=0, y2, dx, dy;
+    public void getinfo(MotionEvent event,MotionEvent event1 ) {
+
+        float x1 = 0, x2, y1 = 0, y2, dx, dy;
         String direction;
-        Float leftclick=event.getX()-carteLeftAnchor;
-        Float topclick=event.getY()-carteTopAnchor;
+        Float leftclick = event.getX() - carteLeftAnchor;
+        Float topclick = event.getY() - carteTopAnchor;
         Log.i("TTTAG", "getinfo: ");
-        if(leftclick>0 && topclick>0){
-            Float xx =  leftclick/Helper.CARTETILESIZE;
-            Float yy =topclick/Helper.CARTETILESIZE;
+        if (leftclick > 0 && topclick > 0) {
+            Float xx = leftclick / Helper.CARTETILESIZE;
+            Float yy = topclick / Helper.CARTETILESIZE;
 
-            if(xx < Helper.CARTEWIDTH && yy < Helper.CARTEHEIGHT){
-                        x1 = event.getX();
-                        y1 = event.getY();
-                        Log.i("www", "getinfo: bas " );
-                       // onKeyDown(KeyEvent.KEYCODE_DPAD_DOWN, null,yy.intValue(),xx.intValue());
-                        //Log.i("www", "getinfo: bas "+xx.intValue()+"ggg"+yy.intValue());
-                        x2 = event1.getX();
-                        y2 = event1.getY();
-                        dx = x2 - x1;
-                        dy = y2 - y1;
-                        Log.i("www", "getinfo: haut " );
-                        // Use dx and dy to determine the direction of the move
-                        if (Math.abs(dx) > Math.abs(dy)) {
-                            if (dx > 0)
-                                onKeyDown(KeyEvent.KEYCODE_DPAD_RIGHT, null, yy.intValue(), xx.intValue());
+            if (xx < Helper.CARTEWIDTH && yy < Helper.CARTEHEIGHT) {
+                x1 = event.getX();
+                y1 = event.getY();
+                Log.i("www", "getinfo: bas ");
+                // onKeyDown(KeyEvent.KEYCODE_DPAD_DOWN, null,yy.intValue(),xx.intValue());
+                //Log.i("www", "getinfo: bas "+xx.intValue()+"ggg"+yy.intValue());
+                x2 = event1.getX();
+                y2 = event1.getY();
+                dx = x2 - x1;
+                dy = y2 - y1;
+                Log.i("www", "getinfo: haut ");
+                // Use dx and dy to determine the direction of the move
+                if (Math.abs(dx) > Math.abs(dy)) {
+                    if (dx > 0)
+                        onKeyDown(KeyEvent.KEYCODE_DPAD_RIGHT, null, yy.intValue(), xx.intValue());
 
-                            else
-                                onKeyDown(KeyEvent.KEYCODE_DPAD_LEFT, null, yy.intValue(), xx.intValue());
+                    else
+                        onKeyDown(KeyEvent.KEYCODE_DPAD_LEFT, null, yy.intValue(), xx.intValue());
 
-                        } else {
-                            if (dy > 0)
-                                onKeyDown(KeyEvent.KEYCODE_DPAD_DOWN, null, yy.intValue(), xx.intValue());
+                } else {
+                    if (dy > 0)
+                        onKeyDown(KeyEvent.KEYCODE_DPAD_DOWN, null, yy.intValue(), xx.intValue());
 
-                            else
-                                onKeyDown(KeyEvent.KEYCODE_DPAD_UP, null, yy.intValue(), xx.intValue());
+                    else
+                        onKeyDown(KeyEvent.KEYCODE_DPAD_UP, null, yy.intValue(), xx.intValue());
 
-                        }
                 }
-            else
-                Log.i(""," vous avez cliqué a l'exterieur du carree");
-        }else{
-            Log.i(""," vous avez cliqué a l'exterieur du carree");
+            } else
+                Log.i("", " vous avez cliqué a l'exterieur du carree");
+        } else {
+            Log.i("", " vous avez cliqué a l'exterieur du carree");
+        }
+
+        if(isWon())//
+
+            niveau++;//
+        switch (niveau){//
+            case 0:initparameters();break;
+            case 1:initparameters1();break;//
+            case 2:initparameters2();break;//
+            default:initparameters();break;//
+
         }
     }
 
