@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="p8.demo.intelligent.test">
+    package="com.example.m.intelligentworkout.test">
 
-    <uses-sdk android:minSdkVersion="1" android:targetSdkVersion="1" />
+    <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="25" />
 
     <application>
         <uses-library android:name="android.test.runner" />
     </application>
 
-    <instrumentation android:name="android.test.InstrumentationTestRunner"
-                     android:targetPackage="p8.demo.intelligent"
+    <instrumentation android:name="android.support.test.runner.AndroidJUnitRunner"
+                     android:targetPackage="com.example.kahina.intelligentworkout"
                      android:handleProfiling="false"
                      android:functionalTest="false"
-                     android:label="Tests for p8.demo.intelligent"/>
+                     android:label="Tests for com.example.kahina.intelligentworkout"/>
 </manifest>

@@ -1,7 +1,7 @@
-#Mon Nov 27 17:50:45 GMT+01:00 2017
-base.0=D\:\\Master1_S1\\Android\\intelligentworkout\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_9e2ff8f23d90494e24dd53bd5654799855743786
-renamed.1=classes.dex
-renamed.0=classes2.dex
-file.1=D\:\\Master1_S1\\Android\\intelligentworkout\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_1d0937a8a3ec0c2c1b262a59051eae40447b0599\\classes.dex
-base.1=D\:\\Master1_S1\\Android\\intelligentworkout\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_1d0937a8a3ec0c2c1b262a59051eae40447b0599
-file.0=D\:\\Master1_S1\\Android\\intelligentworkout\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_9e2ff8f23d90494e24dd53bd5654799855743786\\classes.dex
+#Thu Dec 07 23:03:36 GMT+01:00 2017
+base.0=D\:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_77063ba8f2b6734cdde0eaed7c8919262193139b
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=D\:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_09b5206cfe0b9cc566f641b63d6d6c5918e9bbab\\classes.dex
+base.1=D\:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_09b5206cfe0b9cc566f641b63d6d6c5918e9bbab
+file.0=D\:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_77063ba8f2b6734cdde0eaed7c8919262193139b\\classes.dex

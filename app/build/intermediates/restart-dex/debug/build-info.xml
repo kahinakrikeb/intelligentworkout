@@ -2,13 +2,13 @@
 <instant-run
     abi="x86"
     api-level="24"
-    build-mode="FULL"
+    build-mode="COLD"
     density="hdpi"
     format="10"
     plugin-version="2.3.3"
-    timestamp="1512074412782"
-    token="-7842618652234201021"
-    verifier="FULL_BUILD_REQUESTED" >
+    timestamp="1512684413844"
+    token="5723263008971328091"
+    verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
@@ -23,77 +23,50 @@
         name="verifier"
         duration="0" />
 
-    <artifact
-        location="D:\Master1_S1\Android\intelligentworkout\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
-        type="SPLIT" />
-    <artifact
-        location="D:\Master1_S1\Android\intelligentworkout\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
-        type="SPLIT" />
-    <artifact
-        location="D:\Master1_S1\Android\intelligentworkout\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
-        type="SPLIT" />
-    <artifact
-        location="D:\Master1_S1\Android\intelligentworkout\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
-        type="SPLIT" />
-    <artifact
-        location="D:\Master1_S1\Android\intelligentworkout\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
-        type="SPLIT" />
-    <artifact
-        location="D:\Master1_S1\Android\intelligentworkout\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
-        type="SPLIT" />
-    <artifact
-        location="D:\Master1_S1\Android\intelligentworkout\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
-        type="SPLIT" />
-    <artifact
-        location="D:\Master1_S1\Android\intelligentworkout\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
-        type="SPLIT" />
-    <artifact
-        location="D:\Master1_S1\Android\intelligentworkout\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
-        type="SPLIT" />
-    <artifact
-        location="D:\Master1_S1\Android\intelligentworkout\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
-        type="SPLIT" />
-    <artifact
-        location="D:\Master1_S1\Android\intelligentworkout\app\build\outputs\apk\app-debug.apk"
-        type="SPLIT_MAIN" />
-
     <build
         build-mode="FULL"
-        timestamp="1512074412782"
+        timestamp="1512684074171"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
-            location="D:\Master1_S1\Android\intelligentworkout\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
+            location="D:\Master1_S1\Android\IntelligentWorkout2\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
             type="SPLIT" />
         <artifact
-            location="D:\Master1_S1\Android\intelligentworkout\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+            location="D:\Master1_S1\Android\IntelligentWorkout2\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
             type="SPLIT" />
         <artifact
-            location="D:\Master1_S1\Android\intelligentworkout\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\Master1_S1\Android\intelligentworkout\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\Master1_S1\Android\intelligentworkout\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\Master1_S1\Android\intelligentworkout\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\Master1_S1\Android\intelligentworkout\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\Master1_S1\Android\intelligentworkout\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\Master1_S1\Android\intelligentworkout\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\Master1_S1\Android\intelligentworkout\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\Master1_S1\Android\intelligentworkout\app\build\outputs\apk\app-debug.apk"
+            location="D:\Master1_S1\Android\IntelligentWorkout2\app\build\outputs\apk\app-debug.apk"
             type="SPLIT_MAIN" />
+        <artifact
+            location="D:\Master1_S1\Android\IntelligentWorkout2\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
+            type="SPLIT" />
+        <artifact
+            location="D:\Master1_S1\Android\IntelligentWorkout2\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
+            type="SPLIT" />
+        <artifact
+            location="D:\Master1_S1\Android\IntelligentWorkout2\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
+            type="SPLIT" />
+        <artifact
+            location="D:\Master1_S1\Android\IntelligentWorkout2\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
+            type="SPLIT" />
+        <artifact
+            location="D:\Master1_S1\Android\IntelligentWorkout2\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
+            type="SPLIT" />
+        <artifact
+            location="D:\Master1_S1\Android\IntelligentWorkout2\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
+            type="SPLIT" />
+        <artifact
+            location="D:\Master1_S1\Android\IntelligentWorkout2\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+            type="SPLIT" />
+        <artifact
+            location="D:\Master1_S1\Android\IntelligentWorkout2\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
+            type="SPLIT" />
+        <artifact
+            location="D:\Master1_S1\Android\IntelligentWorkout2\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
+            type="SPLIT" />
     </build>
+    <build
+        build-mode="COLD"
+        timestamp="1512684413844"
+        verifier="COLD_SWAP_REQUESTED" />
 
 </instant-run>
