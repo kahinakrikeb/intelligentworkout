@@ -45,7 +45,7 @@ public class JeuxDB extends HelperDB {
                 cursor.getInt(cursor.getColumnIndex("nbdeplacement")),
                 cursor.getInt(cursor.getColumnIndex("temps")),
                 cursor.getInt(cursor.getColumnIndex("niveau")),
-                Helper.StringToArray(cursor.getString(cursor.getColumnIndex("grill")))
+              Helper.StringToArray(cursor.getString(cursor.getColumnIndex("grill")))
         );
         return jeux;
     }

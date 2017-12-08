@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -17,7 +16,6 @@ public class LoadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load);
         alljeux= new JeuxDB(this).getallJeux();
-        Log.i("alljeu", "onCreate: "+alljeux.size());
         lvListe = (RecyclerView) findViewById(R.id.Load_recyclerView);
         lvListe.setLayoutManager(new LinearLayoutManager(this));
         lvListe.setAdapter(new LoadAdapter(alljeux));

@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements Runnable{
-    MenuItem pauseResume;
+    MenuItem pauseResume,sound;
     private IntelligentView mIntelligent;
     TextView int_move,int_timer;
     Boolean runthread=true;
@@ -21,18 +21,20 @@ public class MainActivity extends AppCompatActivity implements Runnable{
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         int_move=(TextView) this.findViewById(R.id.int_move);
         int_timer=(TextView) this.findViewById(R.id.int_timer);
+
         // recuperation de la vue une voie cree à partir de son id
         mIntelligent = (IntelligentView)findViewById(R.id.IntelligentView);
         // rend visible la vue
         mIntelligent.settextview(int_move,int_timer);
-         mIntelligent.setVisibility(View.VISIBLE);
-       int toload= getIntent().getIntExtra("toload",0);
+        mIntelligent.setVisibility(View.VISIBLE);
+        int toload= getIntent().getIntExtra("toload",0);
         music= MediaPlayer.create(MainActivity.this,R.raw.zeldadubstep);
 
         music.setLooping(true);
@@ -50,12 +52,12 @@ public class MainActivity extends AppCompatActivity implements Runnable{
 
        }
         mIntelligent.initparameters();
-        Log.i("onCreate", "onCreate: fffff");
+
+
 
         timer_thread   = new Thread(this);
         if ((timer_thread!=null) && (!timer_thread.isAlive())) {
             timer_thread.start();
-            Log.e("-FCT-", "cv_thread.start()");
         }
     }
 
@@ -100,6 +102,8 @@ public class MainActivity extends AppCompatActivity implements Runnable{
         getMenuInflater().inflate(R.menu.menu, menu);
         menu.findItem(R.id.menu_accueil);
         pauseResume=menu.findItem(R.id.menu_pause);
+        sound=menu.findItem(R.id.menu_sound);
+        sound.setVisible(true);
         return true;
     }
 
@@ -132,6 +136,17 @@ public class MainActivity extends AppCompatActivity implements Runnable{
                 Intent intent1= new Intent(MainActivity.this,AccueilActivity.class);
                 startActivity(intent1);
                 return true;
+            case R.id.menu_sound:
+                if(music.isPlaying()){
+                    music.pause();
+
+                    sound.setIcon(R.drawable.stopicone);
+                }else {
+                    music.start();
+
+                    sound.setIcon(R.drawable.playicone);
+                }
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -141,16 +156,20 @@ public class MainActivity extends AppCompatActivity implements Runnable{
     public void run() {
         while (runthread){
             try {
+
                 timer_thread.sleep(1000);
-                if(!mIntelligent.isIspause() && mIntelligent.debutjeux)
-                nbtimer++;
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        // TODO Auto-generated method stub
-                        int_timer.setText(String.valueOf(nbtimer));
-                    }
-                });
+                if(!mIntelligent.isIspause() && mIntelligent.debutjeux&& !mIntelligent.isWon()) {
+                    nbtimer++;
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            // TODO Auto-generated method stub
+                            int_timer.setText(String.valueOf(nbtimer));
+                        }
+                    });
+                }
+
 
             } catch (InterruptedException e) {
                 e.printStackTrace();

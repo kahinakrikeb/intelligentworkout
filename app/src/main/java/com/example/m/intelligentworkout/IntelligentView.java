@@ -22,6 +22,7 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     boolean ispause=false,debutjeux=false;
     TextView int_move,int_timer;
     Integer nbmove;
+    int nbtimer=0;
 
     // Declaration des images
     private Bitmap 		rouge;
@@ -54,9 +55,6 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     // tableau de reference du terrain
 
 
-    public void setIn(boolean in) {
-        this.in = in;
-    }
 
     // thread utiliser pour animer les zones de depot des diamants
         private     boolean in      = true;
@@ -174,7 +172,7 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     
 
     // permet d'identifier si la partie est gagnee (tous les diamants à leur place)
-    private boolean isWon() {
+    public boolean isWon() {
 
         return Helper.isSame(getCarte(),carte_m);
     }
@@ -205,7 +203,6 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     public void surfaceCreated(SurfaceHolder arg0) {
     }
 
-    
     public void surfaceDestroyed(SurfaceHolder arg0) {
     	in=false;
     }    
@@ -216,6 +213,7 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
      */
     public void run() {
     	Canvas c = null;
+
         while (in) {
             try {
                 cv_thread.sleep(40);
@@ -359,10 +357,17 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
             if (isWon())//
              {//
                  //
+             //    Score score=new Score();
+              //   score.setNbdeplacement( Integer.valueOf(int_move.getText().toString()));
+               //  score.setTemps( Integer.valueOf(int_timer.getText().toString()));
                  niveau++;
                  if(niveau==Helper.ref.length){
                         niveau=0;
                  }
+                 nbmove=0;
+                 nbtimer=0;
+                 int_move.setText("0");
+                 int_timer.setText("0");
                  loadleve();
                  initparameters();
              }
@@ -432,7 +437,7 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     }
 
     public void resume() {
-        in = true;
+
         cv_thread = new Thread(this);
         cv_thread.start();
 
