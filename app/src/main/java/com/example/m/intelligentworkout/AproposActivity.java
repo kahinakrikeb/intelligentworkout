@@ -1,12 +1,13 @@
 package com.example.m.intelligentworkout;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class AproposActivity extends AppCompatActivity {
+public class AproposActivity extends Activity {
 
 
 

@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity implements Runnable{
     private IntelligentView mIntelligent;
     TextView int_move,int_timer;
     Boolean runthread=true;
-    int nbtimer=0;
+    //int nbtimer=0;
     private     Thread timer_thread;
     MediaPlayer music;
 
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements Runnable{
         setContentView(R.layout.activity_main);
         int_move=(TextView) this.findViewById(R.id.int_move);
         int_timer=(TextView) this.findViewById(R.id.int_timer);
+        int_timer.setText("0");
 
         // recuperation de la vue une voie cree à partir de son id
         mIntelligent = (IntelligentView)findViewById(R.id.IntelligentView);
@@ -42,9 +43,9 @@ public class MainActivity extends AppCompatActivity implements Runnable{
 
        if(toload==1)
        {
-           nbtimer=getIntent().getIntExtra("nbtimer",0);
+         //  nbtimer=getIntent().getIntExtra("nbtimer",0);
            int_move.setText(String.valueOf(getIntent().getIntExtra("nbmove",0)));
-           int_timer.setText(String.valueOf(nbtimer));
+           int_timer.setText(String.valueOf(getIntent().getIntExtra("nbtimer",0)));
            mIntelligent.setCarte_m(Helper.getGrillRef(getIntent().getIntExtra("level",0)));
            mIntelligent.setCarte(Helper.StringToArray(getIntent().getStringExtra("carte")));
            mIntelligent.nbmove=getIntent().getIntExtra("nbmove",0);
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements Runnable{
         super.onRestoreInstanceState(savedInstanceState);
         mIntelligent.setCarte((int[][])  Helper.StringToArray(savedInstanceState.getString("carte")));
         mIntelligent.setCarte_m((int[][]) Helper.StringToArray(savedInstanceState.getString("carte_m")));
-        nbtimer=savedInstanceState.getInt("nbtimer");
+        int_timer.setText(String.valueOf(getIntent().getIntExtra("nbtimer",0)));
         mIntelligent.nbmove=savedInstanceState.getInt("nbmove");
         mIntelligent.initparameters();
         int_move.setText(String.valueOf(mIntelligent.nbmove));
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements Runnable{
     protected void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putString("carte",  Helper.ArrayToString(mIntelligent.getCarte()));
         savedInstanceState.putString("carte_m", Helper.ArrayToString(mIntelligent.getCarte_m()));
-        savedInstanceState.putInt("nbtimer", nbtimer);
+        savedInstanceState.putInt("nbtimer", Integer.valueOf( int_timer.getText().toString()));
         savedInstanceState.putInt("nbmove", mIntelligent.nbmove);
         super.onSaveInstanceState(savedInstanceState);
 
@@ -123,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements Runnable{
                 return true;
             case R.id.menu_save:
                 Intent intent=new Intent(MainActivity.this,SaveActivity.class);
-                intent.putExtra("nbtimer",nbtimer);
+                intent.putExtra("nbtimer",Integer.valueOf( int_timer.getText().toString()));
                 intent.putExtra("nbmove",mIntelligent.nbmove);
                 intent.putExtra("carte_m",Helper.ArrayToString(mIntelligent.getCarte_m()));
                 intent.putExtra("carte",Helper.ArrayToString(mIntelligent.getCarte()));
@@ -159,13 +160,12 @@ public class MainActivity extends AppCompatActivity implements Runnable{
 
                 timer_thread.sleep(1000);
                 if(!mIntelligent.isIspause() && mIntelligent.debutjeux&& !mIntelligent.isWon()) {
-                    nbtimer++;
 
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             // TODO Auto-generated method stub
-                            int_timer.setText(String.valueOf(nbtimer));
+                            incTimeer();
                         }
                     });
                 }
@@ -175,5 +175,11 @@ public class MainActivity extends AppCompatActivity implements Runnable{
                 e.printStackTrace();
             }
         }
+    }
+
+    public void incTimeer(){
+        int timeer=Integer.valueOf(int_timer.getText().toString());
+        timeer++;
+        int_timer.setText(String.valueOf(timeer));
     }
 }

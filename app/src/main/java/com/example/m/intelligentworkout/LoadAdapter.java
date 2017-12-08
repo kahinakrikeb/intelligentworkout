@@ -1,6 +1,9 @@
 package com.example.m.intelligentworkout;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,14 +24,20 @@ public class LoadAdapter extends RecyclerView.Adapter<LoadAdapter.ViewHolder>  {
     public LoadAdapter(ArrayList<Jeux> list) {
         this.list = list;
     }
+    private  void deleSaveFormList(int adapterPosition) {
+        list.remove(adapterPosition);
+        notifyItemRemoved(adapterPosition);
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.load_item,parent,false);
-        LoadAdapter.ViewHolder holder=new LoadAdapter.ViewHolder(view);
+        LoadAdapter.ViewHolder holder=new LoadAdapter.ViewHolder(view,this);
 
         return  holder;
     }
+
+
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
@@ -44,8 +53,12 @@ public class LoadAdapter extends RecyclerView.Adapter<LoadAdapter.ViewHolder>  {
     public class ViewHolder extends RecyclerView.ViewHolder {
         Jeux jeux;
         TextView load_nom,load_nbmove,load_temps;
-        public ViewHolder(View itemView) {
+        Context contaxt;
+        LoadAdapter loadAdapter;
+        public ViewHolder(View itemView, final LoadAdapter loadAdapter) {
             super(itemView);
+             this.loadAdapter=loadAdapter;
+            contaxt=itemView.getContext();
             load_nom=(TextView) itemView.findViewById(R.id.load_nom);
             load_nbmove=(TextView) itemView.findViewById(R.id.load_nbmove);
             load_temps=(TextView) itemView.findViewById(R.id.load_temps);
@@ -58,13 +71,34 @@ public class LoadAdapter extends RecyclerView.Adapter<LoadAdapter.ViewHolder>  {
                     intent.putExtra("nbtimer",jeux.getNbtimer());
                     intent.putExtra("level",jeux.getLevel());
                     intent.putExtra("carte",Helper.ArrayToString(jeux.getMatrice()));
-                    Log.i("nbmove", "nbmove: "+jeux.getNbmove());
-                    Log.i("nbtimer", "nbtimer: "+jeux.getNbtimer());
-                    Log.i("level", "level: "+jeux.getLevel());
-                    Log.i("getMatrice", "getMatrice: "+Helper.ArrayToString(jeux.getMatrice()));
                     view.getContext().startActivity(intent);
                 }
             });
+             itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                 @Override
+                 public boolean onLongClick(View view) {
+                     AlertDialog.Builder alert = new AlertDialog.Builder(contaxt);
+                     alert.setTitle("Alert!!");
+                     alert.setMessage("Voullez-vous supprimé la ligne?");
+                     alert.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                         @Override
+                         public void onClick(DialogInterface dialog, int which) {
+                             new JeuxDB(contaxt).delJeux(jeux.getId());
+                             loadAdapter.deleSaveFormList(getAdapterPosition());
+                             dialog.dismiss();
+                         }
+                     });
+                     alert.setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                         @Override
+                         public void onClick(DialogInterface dialog, int which) {
+                             dialog.dismiss();
+                         }
+                     });
+                     alert.show();
+                     return true;
+                 }
+             });
+
         }
 
         public void bind(Jeux jeux) {
@@ -74,4 +108,8 @@ public class LoadAdapter extends RecyclerView.Adapter<LoadAdapter.ViewHolder>  {
             load_temps.setText(String.valueOf(jeux.getNbtimer()));
         }
     }
+
+
+
+
 }

@@ -33,6 +33,10 @@ public class JeuxDB extends HelperDB {
         return jeux;
     }
 
+    public void delJeux(int id){
+        getDb().delete(SAUVEGARDE,"id = "+id,new String[]{});
+    }
+
     public Jeux getJeux(int id)
     {
         String sql="Select * from "+SAUVEGARDE+" where id = ?";

@@ -30,7 +30,7 @@ public class HelperDB extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("create table "+SCORE+" (id integer primary key , name string(255),nbdeplacement integer,temps integer,nbsecdep integer);");
         sqLiteDatabase.execSQL("create table "+SAUVEGARDE+" (id integer primary key , name string(255),nbdeplacement integer," +
                 "temps integer,niveau integer,grill string(255));");
-        sqLiteDatabase.execSQL("insert into "+SCORE+" (id, name,nbdeplacement ,temps )values" +
+        sqLiteDatabase.execSQL("insert into "+SCORE+" (id, name,nbdeplacement ,temps,nbsecdep )values" +
                 "(1, \" \",0 ,0,10000 )," +
                 "(2, \" \",0 ,0,10000 )," +
                 "(3, \" \",0 ,0,10000 )," +
@@ -41,7 +41,6 @@ public class HelperDB extends SQLiteOpenHelper {
                 "(8, \" \",0 ,0,10000)," +
                 "(9, \" \",0 ,0,10000 )," +
                 "(10, \" \",0 ,0,10000 );");
-
     }
 
     @Override

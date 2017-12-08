@@ -10,8 +10,11 @@
         android:id="@+id/savetexte"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Sauvegarde"
+        android:padding="10dp"
+        android:text="Save"
         android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,7 +26,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        android:text="Nom"
+        android:text="Name"
         app:layout_constraintEnd_toStartOf="@+id/jeux_save_name"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,19 +40,20 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/savetexte" />
 
     <Button
         android:id="@+id/button_jeux_save"
-        android:layout_width="0dp"
+        android:layout_width="88dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="52dp"
-        android:text="Sauvegarder"
+        android:layout_marginTop="51dp"
+        android:text="Save"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jeux_save_name" />
+        app:layout_constraintTop_toBottomOf="@+id/jeux_save_name"
+        android:layout_marginLeft="32dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <Button
         android:id="@+id/bouton_jeux_cancel"
@@ -58,7 +62,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="52dp"
-        android:text="Annuler"
+        android:text="Cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.234"
         app:layout_constraintStart_toEndOf="@+id/button_jeux_save"

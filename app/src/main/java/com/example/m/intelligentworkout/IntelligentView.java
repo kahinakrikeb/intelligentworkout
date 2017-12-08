@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Build;
+import android.text.format.DateFormat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -15,6 +16,9 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 
 public class IntelligentView extends SurfaceView implements SurfaceHolder.Callback, Runnable,GestureDetector.OnGestureListener {
@@ -135,7 +139,7 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
 
     // dessin du gagne si gagne
     private void paintwin(Canvas canvas) {
-    	canvas.drawBitmap(win, carteLeftAnchor+ 3*Helper.CARTETILESIZE, carteTopAnchor+ 4*Helper.CARTETILESIZE, null);
+    	canvas.drawBitmap(win, carteLeftAnchor+ 2*Helper.CARTETILESIZE, carteTopAnchor+ 2*Helper.CARTETILESIZE, null);
     }    
     
     // dessin de la carte du jeu
@@ -179,7 +183,7 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     
     // dessin du jeu (fond uni, en fonction du jeu gagne ou pas dessin du plateau et du joueur des diamants et des fleches)
     private void nDraw(Canvas canvas) {
-		canvas.drawRGB(44,44,44);
+		canvas.drawRGB(0,0,0);
     	if (isWon()) {
           //  painttimer(canvas);
             paintcarte(canvas);
@@ -311,71 +315,88 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     public void getinfo(MotionEvent event,MotionEvent event1 ) {
 
         if(!ispause) {
-            float x1 = 0, x2, y1 = 0, y2, dx, dy;
-            String direction;
-            Float leftclick = event.getX() - carteLeftAnchor;
-            Float topclick = event.getY() - carteTopAnchor;
-            Log.i("TTTAG", "getinfo: ");
-            if (leftclick > 0 && topclick > 0) {
-                Float xx = leftclick / Helper.CARTETILESIZE;
-                Float yy = topclick / Helper.CARTETILESIZE;
-                    debutjeux=true;
+            if (!isWon()) {
+                float x1 = 0, x2, y1 = 0, y2, dx, dy;
+                String direction;
+                Float leftclick = event.getX() - carteLeftAnchor;
+                Float topclick = event.getY() - carteTopAnchor;
+                Log.i("TTTAG", "getinfo: ");
+                if (leftclick > 0 && topclick > 0) {
+                    Float xx = leftclick / Helper.CARTETILESIZE;
+                    Float yy = topclick / Helper.CARTETILESIZE;
+                    debutjeux = true;
 
-                if (xx < Helper.CARTEWIDTH && yy < Helper.CARTEHEIGHT) {
-                    x1 = event.getX();
-                    y1 = event.getY();
-                    Log.i("www", "getinfo: bas ");
-                    // onKeyDown(KeyEvent.KEYCODE_DPAD_DOWN, null,yy.intValue(),xx.intValue());
-                    //Log.i("www", "getinfo: bas "+xx.intValue()+"ggg"+yy.intValue());
-                    x2 = event1.getX();
-                    y2 = event1.getY();
-                    dx = x2 - x1;
-                    dy = y2 - y1;
-                    Log.i("www", "getinfo: haut ");
-                    // Use dx and dy to determine the direction of the move
-                    if (Math.abs(dx) > Math.abs(dy)) {
-                        if (dx > 0)
-                            onKeyDown(KeyEvent.KEYCODE_DPAD_RIGHT, null, yy.intValue(), xx.intValue());
+                    if (xx < Helper.CARTEWIDTH && yy < Helper.CARTEHEIGHT) {
+                        x1 = event.getX();
+                        y1 = event.getY();
+                        Log.i("www", "getinfo: bas ");
+                        // onKeyDown(KeyEvent.KEYCODE_DPAD_DOWN, null,yy.intValue(),xx.intValue());
+                        //Log.i("www", "getinfo: bas "+xx.intValue()+"ggg"+yy.intValue());
+                        x2 = event1.getX();
+                        y2 = event1.getY();
+                        dx = x2 - x1;
+                        dy = y2 - y1;
+                        Log.i("www", "getinfo: haut ");
+                        // Use dx and dy to determine the direction of the move
+                        if (Math.abs(dx) > Math.abs(dy)) {
+                            if (dx > 0)
+                                onKeyDown(KeyEvent.KEYCODE_DPAD_RIGHT, null, yy.intValue(), xx.intValue());
 
-                        else
-                            onKeyDown(KeyEvent.KEYCODE_DPAD_LEFT, null, yy.intValue(), xx.intValue());
+                            else
+                                onKeyDown(KeyEvent.KEYCODE_DPAD_LEFT, null, yy.intValue(), xx.intValue());
 
-                    } else {
-                        if (dy > 0)
-                            onKeyDown(KeyEvent.KEYCODE_DPAD_DOWN, null, yy.intValue(), xx.intValue());
+                        } else {
+                            if (dy > 0)
+                                onKeyDown(KeyEvent.KEYCODE_DPAD_DOWN, null, yy.intValue(), xx.intValue());
 
-                        else
-                            onKeyDown(KeyEvent.KEYCODE_DPAD_UP, null, yy.intValue(), xx.intValue());
-
-                    }
-                } else
+                            else
+                                onKeyDown(KeyEvent.KEYCODE_DPAD_UP, null, yy.intValue(), xx.intValue());
+                        }
+                    } else
+                        Log.i("", " vous avez cliqué a l'exterieur du carree");
+                } else {
                     Log.i("", " vous avez cliqué a l'exterieur du carree");
-            } else {
-                Log.i("", " vous avez cliqué a l'exterieur du carree");
-            }
+                }
 
-            if (isWon())//
-             {//
-                 //
-             //    Score score=new Score();
-              //   score.setNbdeplacement( Integer.valueOf(int_move.getText().toString()));
-               //  score.setTemps( Integer.valueOf(int_timer.getText().toString()));
-                 niveau++;
-                 if(niveau==Helper.ref.length){
-                        niveau=0;
-                 }
-                 nbmove=0;
-                 nbtimer=0;
-                 int_move.setText("0");
-                 int_timer.setText("0");
-                 loadleve();
-                 initparameters();
-             }
+                if (isWon())//
+                {//
+                    Score score = new Score();
+                    score.setName(DateFormat.format("dd-MM-yyy hh:mm", new Date().getTime()).toString());
+                    score.setNbdeplacement(Integer.valueOf(int_move.getText().toString()));
+                    score.setTemps(Integer.valueOf(int_timer.getText().toString()));
+                    ArrayList<Score> scoreListe = new ScoreDB(mContext).getallScore();
+                    for (int bou = 0; bou < scoreListe.size(); bou++) {
+                        Score scoredebd = scoreListe.get(bou);
+                        if (score.getNbsecdep() < scoredebd.getNbsecdep()) {
+                            score.setId(scoredebd.getId());
+                            new ScoreDB(mContext).updateScore(score);
+                            break;
+                        }
+                    }
+                    niveau++;
+                    if (niveau == Helper.ref.length) {
+                        niveau = 0;
+                    }
+                }
+            }else{
+                nbmove = 0;
+                int_move.setText("0");
+                int_timer.setText("0");
+                loadleve();
+                initparameters();
+            }
         }
     }
 
     @Override
     public boolean onDown(MotionEvent motionEvent) {
+        if(isWon()){
+            nbmove = 0;
+            int_move.setText("0");
+            int_timer.setText("0");
+            loadleve();
+            initparameters();
+        }
         return true;
     }
 
@@ -437,7 +458,7 @@ public class IntelligentView extends SurfaceView implements SurfaceHolder.Callba
     }
 
     public void resume() {
-
+        in=true;
         cv_thread = new Thread(this);
         cv_thread.start();
 

@@ -132,6 +132,10 @@
         "source": "C:\\Users\\User\\.android\\build-cache\\315717b32e5019a05b0772d817005a0c1b24f9b3\\output\\res\\layout\\abc_alert_dialog_title_material.xml"
     },
     {
+        "merged": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\build\\intermediates\\res\\merged\\debug\\layout\\score_item.xml",
+        "source": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\src\\main\\res\\layout\\score_item.xml"
+    },
+    {
         "merged": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_chronometer.xml",
         "source": "C:\\Users\\User\\.android\\build-cache\\315717b32e5019a05b0772d817005a0c1b24f9b3\\output\\res\\layout\\notification_template_part_chronometer.xml"
     },

@@ -4,6 +4,10 @@
         "source": "C:\\Users\\User\\.android\\build-cache\\315717b32e5019a05b0772d817005a0c1b24f9b3\\output\\res\\drawable\\abc_ic_search_api_material.xml"
     },
     {
+        "merged": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\score.png",
+        "source": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\src\\main\\res\\drawable\\score.png"
+    },
+    {
         "merged": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_dark.xml",
         "source": "C:\\Users\\User\\.android\\build-cache\\1dc99933d357a8958eb3a7f2a7181dc5d124fce8\\output\\res\\drawable\\common_google_signin_btn_icon_dark.xml"
     },
@@ -12,24 +16,28 @@
         "source": "C:\\Users\\User\\.android\\build-cache\\315717b32e5019a05b0772d817005a0c1b24f9b3\\output\\res\\drawable\\abc_item_background_holo_light.xml"
     },
     {
+        "merged": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\playicone.png",
+        "source": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\src\\main\\res\\drawable\\playicone.png"
+    },
+    {
         "merged": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_clear_material.xml",
         "source": "C:\\Users\\User\\.android\\build-cache\\315717b32e5019a05b0772d817005a0c1b24f9b3\\output\\res\\drawable\\abc_ic_clear_material.xml"
     },
     {
-        "merged": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\playicone.png",
-        "source": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\src\\main\\res\\drawable\\playicone.png"
+        "merged": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\replay.png",
+        "source": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\src\\main\\res\\drawable\\replay.png"
     },
     {
         "merged": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_dark.xml",
         "source": "C:\\Users\\User\\.android\\build-cache\\1dc99933d357a8958eb3a7f2a7181dc5d124fce8\\output\\res\\drawable\\common_google_signin_btn_text_dark.xml"
     },
     {
-        "merged": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_light.xml",
-        "source": "C:\\Users\\User\\.android\\build-cache\\315717b32e5019a05b0772d817005a0c1b24f9b3\\output\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
-    },
-    {
         "merged": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_light_focused.xml",
         "source": "C:\\Users\\User\\.android\\build-cache\\1dc99933d357a8958eb3a7f2a7181dc5d124fce8\\output\\res\\drawable\\common_google_signin_btn_icon_light_focused.xml"
+    },
+    {
+        "merged": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_light.xml",
+        "source": "C:\\Users\\User\\.android\\build-cache\\315717b32e5019a05b0772d817005a0c1b24f9b3\\output\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
     },
     {
         "merged": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_voice_search_api_material.xml",
@@ -128,6 +136,10 @@
         "source": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\src\\main\\res\\drawable\\block1.png"
     },
     {
+        "merged": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\play.png",
+        "source": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\src\\main\\res\\drawable\\play.png"
+    },
+    {
         "merged": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_light.xml",
         "source": "C:\\Users\\User\\.android\\build-cache\\315717b32e5019a05b0772d817005a0c1b24f9b3\\output\\res\\drawable\\abc_list_selector_holo_light.xml"
     },
@@ -164,6 +176,10 @@
         "source": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\src\\main\\res\\drawable\\bg.png"
     },
     {
+        "merged": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\time.png",
+        "source": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\src\\main\\res\\drawable\\time.png"
+    },
+    {
         "merged": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_tile_bg.xml",
         "source": "C:\\Users\\User\\.android\\build-cache\\315717b32e5019a05b0772d817005a0c1b24f9b3\\output\\res\\drawable\\notification_tile_bg.xml"
     },
@@ -192,8 +208,16 @@
         "source": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\src\\main\\res\\drawable\\win.png"
     },
     {
+        "merged": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\move.png",
+        "source": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\src\\main\\res\\drawable\\move.png"
+    },
+    {
         "merged": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_dark_focused.xml",
         "source": "C:\\Users\\User\\.android\\build-cache\\1dc99933d357a8958eb3a7f2a7181dc5d124fce8\\output\\res\\drawable\\common_google_signin_btn_text_dark_focused.xml"
+    },
+    {
+        "merged": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\exit.png",
+        "source": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\src\\main\\res\\drawable\\exit.png"
     },
     {
         "merged": "D:\\Master1_S1\\Android\\IntelligentWorkout2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_check_material.xml",

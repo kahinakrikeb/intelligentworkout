@@ -19,28 +19,24 @@ public class ScoreDB extends HelperDB {
 
 
 
-   /*
-   public Jeux updateJeux(Score score)
-   {
-        String sql="Select * from "+SAUVEGARDE+" where id = ?";
-        Cursor cursor;
-        cursor=getDb().rawQuery(sql,new String[]{String.valueOf(id)});
-        cursor.moveToFirst();
-        Jeux jeux=new Jeux(
-                cursor.getInt(cursor.getColumnIndex("id")),
-                cursor.getString(cursor.getColumnIndex("name")),
-                cursor.getInt(cursor.getColumnIndex("nbdeplacement")),
-                cursor.getInt(cursor.getColumnIndex("temps")),
-                cursor.getInt(cursor.getColumnIndex("niveau")),
-                Helper.StringToArray(cursor.getString(cursor.getColumnIndex("grill")))
-        );
-        return jeux;
+    public void updateScore(Score score)
+    {
+        SQLiteDatabase db = getDb();
+        //Création d'un ContentValues (fonctionne comme une HashMap)
+        ContentValues values = new ContentValues();
+        //on lui ajoute une valeur associée à une clé (qui est le nom de la colonne dans laquelle on veut mettre la valeur)
+        values.put("name", score.getName());
+        values.put("nbdeplacement", score.getNbdeplacement());
+        values.put("temps", score.getTemps());
+        values.put("nbsecdep", score.getNbsecdep());
+        db.update(SCORE, values,"id= "+score.getId(),null);
+
     }
-    */
+
 
     public ArrayList<Score> getallScore()
     {
-        String sql="Select * from "+SAUVEGARDE+" order by nbsecdep asc";
+        String sql="Select * from "+SCORE+" order by nbsecdep asc";
         Cursor cursor;
         cursor = getDb().rawQuery(sql, new String[]{});
         ArrayList<Score> allScore = new ArrayList<>();

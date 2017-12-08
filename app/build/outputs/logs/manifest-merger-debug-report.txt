@@ -37,7 +37,7 @@ MERGED from [com.android.support:support-compat:25.3.1] C:\Users\User\.android\b
 	android:supportsRtl
 		ADDED from D:\Master1_S1\Android\IntelligentWorkout2\app\src\main\AndroidManifest.xml:10:9-35
 	android:roundIcon
-		ADDED from D:\Master1_S1\Android\IntelligentWorkout2\app\src\main\AndroidManifest.xml:9:9-54
+		ADDED from D:\Master1_S1\Android\IntelligentWorkout2\app\src\main\AndroidManifest.xml:9:9-48
 	android:allowBackup
 		ADDED from D:\Master1_S1\Android\IntelligentWorkout2\app\src\main\AndroidManifest.xml:6:9-35
 	android:icon

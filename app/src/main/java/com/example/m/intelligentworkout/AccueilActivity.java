@@ -1,5 +1,6 @@
 package com.example.m.intelligentworkout;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
@@ -8,7 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class AccueilActivity extends AppCompatActivity {
+public class AccueilActivity extends Activity {
         Button accueil_apropos,accueil_load,accueil_best,accueil_play,accueil_exit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
